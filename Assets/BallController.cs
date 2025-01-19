@@ -5,7 +5,7 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] private Rigidbody sphereRigidbody;
     [SerializeField] private float ballSpeed = 2f;
-    [SerializeField] private float ballJumpForce = 1f;
+    [SerializeField] private float ballJumpForce = 0.7f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
