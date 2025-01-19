@@ -1,9 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
     [SerializeField] private Rigidbody sphereRigidbody;
     [SerializeField] private float ballSpeed = 2f;
+    [SerializeField] private float ballJumpForce = 1f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,11 +18,25 @@ public class BallController : MonoBehaviour
     {
         
     }
-    public void MoveBall(Vector2 inputVector)
+    public void MoveBall(Vector3 inputVector)
     {
-        Vector3 inputXZPlane = new Vector3(inputVector.x, 0, inputVector.y);
-        Debug.Log("Resultant Vector: " + inputVector);
-        Debug.Log("Resultant 3D Vector: " + inputVector);
-        sphereRigidbody.AddForce(inputXZPlane * ballSpeed);
+        Vector3 inputXZPlane = new Vector3(0, inputVector.y * ballJumpForce, 0);
+        Vector3 inputXZPlaneJump = new Vector3(inputVector.x, 0, inputVector.z);
+        
+        // Debug.Log("Resultant Vector: " + inputVector);
+        // Debug.Log("Resultant 3D Vector: " + inputVector);
+        if(IsGrounded())
+        {
+            sphereRigidbody.AddForce(inputXZPlane * ballSpeed, ForceMode.Impulse);
+            sphereRigidbody.AddForce(inputXZPlaneJump * ballSpeed);
+        }
+        else
+        {
+            sphereRigidbody.AddForce(inputXZPlaneJump * ballSpeed);
+        }
+    }
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 0.51f);
     }
 }

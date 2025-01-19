@@ -821,6 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sphereRigidbody: {fileID: 1241750115}
   ballSpeed: 2
+  ballJumpForce: 0.5
 --- !u!1 &1366954563
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +886,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 37bdc372ac229ea4ba18decf79b8593c, type: 2}
+  - {fileID: 2100000, guid: cc69c693fdc21df4892c7bf366e2d1d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
